@@ -1,0 +1,42 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    
+
+\section*{Simpson积分}
+
+\begin{verbatim}
+function csans = SimpsonCS(n,left,right)
+    x = uniform(n,left,right);
+    y = assign(n,x);
+    temp=0;
+    for i = 1:1:(n-3)
+        temp=temp+(y(i+2)+4*y(i+1)+y(i))*(x(i+1)-x(i))/6;
+    end
+    csans = temp;
+
+end
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}输入参数的数目不足。
+
+出错 SimpsonCS (第 5 行)
+    x = uniform(n,left,right);
+\end{verbatim} \color{black}
+    
+
+
+\end{document}
+
