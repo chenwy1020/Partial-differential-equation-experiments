@@ -3,7 +3,7 @@
 
 function csans = SimpsonCS(n,left,right)
     x = uniform(n,left,right);
-    y = assign2(n,x);
+    y = assign1(n,x);
     m=n/2;
     temp=0;
     for i = 1:1:m
