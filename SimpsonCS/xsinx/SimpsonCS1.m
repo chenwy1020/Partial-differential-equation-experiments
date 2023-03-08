@@ -1,7 +1,7 @@
 %% Simpson积分
 
 
-function csans = SimpsonCS(n,left,right)
+function csans = SimpsonCS1(n,left,right)
     x = uniform(n,left,right);
     y = assign1(n,x);
     m=n/2;
@@ -12,5 +12,3 @@ function csans = SimpsonCS(n,left,right)
     csans = temp;
     
 end
-
-
