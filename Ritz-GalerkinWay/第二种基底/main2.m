@@ -1,7 +1,7 @@
 %主函数main
 clear all
 clc
-n=1000;
+n=10000;
 for k=1:1:10
     N(k)=k;
     for i=1:1:N(k)
@@ -21,15 +21,18 @@ for k=1:1:10
 end
 
 %%绘图
-plot(N,NcondA)
+plot(N,NcondA,'-o');
 xlabel('N');
 ylabel('condA');
+title('基函数个数 & 系数矩阵条件数')
 
-plot(N,err)
+plot(N,err,'-o');
 xlabel('N');
 ylabel('误差err');
+title('基函数个数 & 误差')
 
 sqrtNcondA = log(NcondA);
-plot(N,sqrtNcondA)   %特殊的A 的条件数的对数与N基本成线性关系
+plot(N,sqrtNcondA,'-o')   %特殊的A 的条件数的对数与N基本成线性关系
 xlabel('N');
 ylabel('log(condA)');
+title('基函数个数 & 条件数的对数 ')
