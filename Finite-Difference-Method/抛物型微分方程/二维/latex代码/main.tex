@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{ctex}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{booktabs}
+
+\title{微分方程数值解计算实习课后作业11}
+\author{陈文宇}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+%---------------------------------------------------
+\section{实验结果}
+
+\begin{table}[htbp]
+  \centering
+  
+    \begin{tabular}{cccc}
+    \midrule
+          & $y_{1}$    & $y_{2}$     & $y_{3}$  \\
+    \toprule
+    $x_{1}$    & 0.145699 & 2.33E-15 & -0.1457 \\
+    $x_{2}$    & 0.206049 & 3.32E-15 & -0.20605 \\
+    $x_{3}$    & 0.145699 & 2.36E-15 & -0.1457 \\
+    \toprule
+    \end{tabular}%
+  \label{tab:addlabel}%
+  \caption{ADI实验结果}
+\end{table}%
+
+\begin{table}[htbp]
+  \centering
+    \begin{tabular}{cccc}
+    \midrule
+          & $y_{1}$    & $y_{2}$     & $y_{3}$  \\
+    \toprule
+    $x_{1}$    & 0.145716 & 5.04E-15 & -0.14572 \\
+    $x_{2}$    & 0.206074 & 7.18E-15 & -0.20607 \\
+    $x_{3}$    & 0.145716 & 5.05E-15 & -0.14572 \\
+    \toprule
+    \end{tabular}%
+  \label{tab:addlabel}%
+  \caption{预估-矫正法实验结果}
+\end{table}%
+
+\begin{table}[htbp]
+  \centering
+    \begin{tabular}{cccc}
+    \midrule
+          & $y_{1}$    & $y_{2}$     & $y_{3}$  \\
+    \midrule
+    $x_{1}$     & 0.14792 & 7.97E-17 & -0.14792 \\
+    $x_{2}$     & 0.20919 & 9.27E-17 & -0.20919 \\
+    $x_{3}$     & 0.14792 & 6.54E-17 & -0.14792 \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+  \caption{LOD实验结果}
+\end{table}%
+
+\end{document}
