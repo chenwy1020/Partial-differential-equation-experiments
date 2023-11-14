@@ -1,4 +1,3 @@
-%仿照老师所给的程序代码，建立Lagrange型二次有限元方法
 %此程序为Lagrange型一维二次有限元有限元方法的通用程序
 
 clear
@@ -20,7 +19,7 @@ for ni=1:1:MK
     % 这里考虑均匀剖分 
     h=(b-a)/(2*n);
     p(1, : )=a+[0:1:2*n]*h; 
-    I(1, : )=[1:2:2*n-1];  I(2, : )=[3:2:2*n+1]; I(3, : )=[2:2:2*n];
+    I(1, : )=(1:2:2*n-1);  I(2, : )=(3:2:2*n+1); I(3, : )=(2:2:2*n);
 
     %% 给出变分问题 a(u, v)
     % 对于此问题 p(x)=1, q(x)=pi^2/4
@@ -39,25 +38,25 @@ for ni=1:1:MK
         hi=x2-x1;
     
         % 计算 a1, a2, a3, a4
-        temp=p1/hi*(4*xi-3).^2+hi*p2*(2*xi-1).^2.*(xi-1).^2;                        a11=(5*temp(1)+8*temp(2)+5*temp(3))/9;
-        temp=4*p1/hi*(4*xi-3).*(1-2*xi)+4*hi*p2*(2*xi-1).*(xi-1).*xi.*(1-xi);       a12=(5*temp(1)+8*temp(2)+5*temp(3))/9;
-        temp=p1/hi*(4*xi-1).*(4*xi-3)+hi*p2*(2*xi-1).^2.*xi.*(xi-1);                a13=(5*temp(1)+8*temp(2)+5*temp(3))/9;
+        temp=p1/hi*(4*xi-3).^2+hi*p2*(2*xi-1).^2.*(xi-1).^2;                        a11=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0;
+        temp=4*p1/hi*(4*xi-3).*(1-2*xi)+4*hi*p2*(2*xi-1).*(xi-1).*xi.*(1-xi);       a12=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0;
+        temp=p1/hi*(4*xi-1).*(4*xi-3)+hi*p2*(2*xi-1).^2.*xi.*(xi-1);                a13=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0;
                                                                                     a21=a12;
-        temp=16*p1/hi*(1-2*xi).^2+16*hi*p2*(1-xi).^2.*xi.^2;                        a22=(5*temp(1)+8*temp(2)+5*temp(3))/9;
-        temp=-4*p1/hi*(1-4*xi).*(1-2*xi)+4*hi*p2*(2*xi-1).*xi.^2.*(1-xi);           a23=(5*temp(1)+8*temp(2)+5*temp(3))/9;
+        temp=16*p1/hi*(1-2*xi).^2+16*hi*p2*(1-xi).^2.*xi.^2;                        a22=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0;
+        temp=-4*p1/hi*(1-4*xi).*(1-2*xi)+4*hi*p2*(2*xi-1).*xi.^2.*(1-xi);           a23=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0;
                                                                                     a31=a13;
                                                                                     a32=a23;
-        temp=p1/hi*(4*xi-1).^2+hi*p2*(2*xi-1).^2.*xi.^2;                            a33=(5*temp(1)+8*temp(2)+5*temp(3))/9; %可以和a11相加
+        temp=p1/hi*(4*xi-1).^2+hi*p2*(2*xi-1).^2.*xi.^2;                            a33=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0; %可以和a11相加
     
         % 计算 b1, b2
         temp=hi*pi^2/2*sin(pi/2*(x1+hi*xi)).*(1-2*xi).*(-xi);%左侧积分 实际上应当是右侧，不过首项系数为零，也就罢了
-        b1=(5*temp(1)+8*temp(2)+5*temp(3))/9;
+        b1=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0;
 
         temp=4*hi*pi^2/2*sin(pi/2*(x1+hi*xi)).*xi.*(1-xi);
-        bc=(5*temp(1)+8*temp(2)+5*temp(3))/9; 
+        bc=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0; 
 
         temp=hi*pi^2/2*sin(pi/2*(x1+hi*xi)).*(2*xi-1).*(xi-1);%右侧积分
-        b2=(5*temp(1)+8*temp(2)+5*temp(3))/9;
+        b2=(5*temp(1)+8*temp(2)+5*temp(3))/9/2.0;
     
         % 组装刚度矩阵
         A(i1, i1)=A(i1, i1)+a11;  A(i1, ic)=A(i1, ic)+a12;  A(i1, i2)=A(i1, i2)+a13;
@@ -96,11 +95,11 @@ for ni=1:1:MK
         tempdv=pi/2*cos(pi/2*(x1+hi*xi));
 
         % 计算 L2 误差
-        temp=(tempu-tempv).^2*hi;
+        temp=(tempu-tempv).^2*hi/2.0;
         err2(ni)=err2(ni)+(5*temp(1)+8*temp(2)+5*temp(3))/9;
 
         % 计算 H1 半范数
-        temp=(tempdu-tempdv).^2*hi;
+        temp=(tempdu-tempdv).^2*hi/2.0;
         errf(ni)=errf(ni)+(5*temp(1)+8*temp(2)+5*temp(3))/9;
     end
 
